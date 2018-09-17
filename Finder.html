@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Finder</title>
+</head>
+<body>
+<form><label for="finder">Finder</label><input id="finder" type="number" value="0"></form>
+<script>
+    let arry = randomArr(200);
+    displayArr(arry, 6);
+    document.write("<br>");
+    document.write("<br>");
+    document.write("<br>");
+    document.write("<br>");
+    let needToFind = document.getElementById("finder");
+     needToFind.addEventListener("keydown",function (e) {
+         if (e.key === "Enter"){
+             displayArr(findInArr(arry,Number(needToFind.value)),1);
+         }
+     });
+
+
+
+
+    function randomArr(max) {
+        let randomArrLenght = Math.round(Math.random() * max);
+        let outputArr = [];
+        for (let i = 0; i < randomArrLenght; i++) {
+            outputArr.push(Math.round(Math.random() * max));
+        }
+        return outputArr;
+    }
+
+    function displayArr(arr, width) {
+        let write = "";
+        for (let i = 0; i < arr.length; i++) {
+            if (i % width === 0) {
+                write += "<br>";
+            }
+            write += " " + arr[i];
+        }
+        document.write(write);
+    }
+
+    function findInArr(arr, needToFind) {
+        let output = [];
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === needToFind) {
+                count++;
+                output.push(count + ": found " + "(" + needToFind + ")" + " at index of " + i);
+            }
+        }
+        output.push("found total " + count + " match");
+        return output;
+    }
+
+</script>
+</body>
+</html>
